@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Webanwendungen - Martina Kraus</title>
+
+    <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+    <meta name="author" content="Martina Kraus">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/beige.css" id="theme">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+<div class="reveal">
+
+    <!-- Any section element inside of this container is displayed as a slide -->
+    <div class="slides">
+    <section>
+        <h1>Web</h1>
+    </section>
+
+    <section>
+        <h2>Inhalt</h2>
+        <ul>
+            <li>DOM Event Model</li>
+            <li>API</li>
+            <li>XHR</li>
+        </ul>
+    </section>
+
+    <section>
+        <section>
+            <h1>DOM Event Model (Level 3)</h1>
+        </section>
+         <section>
+            <h2>Drei M&ouml;glichkeiten ein Event zu registrieren:</h2>
+            <ol>
+                <li>EventTarget.addEventListener</li>
+                <li>HTML attribute</li>
+                <li>DOM element properties</li>
+            </ol>
+        </section>
+         <section>
+            <h2>EventTarget.addEventListener</h2>
+            <span>Kein Support in IE 6-8: EventTarget.attachEvent</span>
+            <pre class="javascript"><code>
+// Assuming myButton is a button element
+myButton.addEventListener(  'click',
+                            function(){alert('Hello world');}
+                        );
+            </code></pre>
+        </section>
+         <section>
+            <h2>HTML attribute</h2>
+            <pre class="html"><code>
+&lt;button onclick="alert('Hello world!')"&gt;
+            </code></pre>
+        </section>
+         <section>
+            <h2>DOM element properties</h2>
+            <span>Leider nur ein Eventh&auml;ndler pro Element und pro Event</span>
+            <pre class="javascript"><code>
+// Assuming myButton is a button element
+myButton.onclick = function(event){alert('Hello world');};</code></pre>
+        </section>
+		<section>
+		   <h2>Events:</h2>
+		   <ul>
+			   <li>click, dblclick</li>
+			   <li>key/ -down, -up</li>
+			   <li>mouse/ -down, -enter, -move, -leave</li>
+			   <li>load, unload</li>
+			   <li>scroll</li>
+		   </ul>
+	   </section>
+		</section>
+		<section>
+			<section>
+	            <h1>Web-API</h1>
+	        </section>
+			<section>
+			<h2>Application program interface (API)</h2>
+	        <ul>
+	            <li>Programmierschnittstelle</li>
+	            <li>Anbindung an das System erm&ouml;glichen</li>
+	            <li>z.B an Datenbanken, WebServern, oder Modulen</li>
+				<li>Hat nichts mit dem DOM zu tun</li>
+	        </ul>
+			</section>
+			<section>
+			<h2>Herausforderung</h2>
+			<span>schnelle abfragen udn analysieren von Daten</span>
+	        <ul>
+	            <li>Facebook, another shitty social media platform</li>
+	            <li>Daten in der Cloud</li>
+	            <li>NSA</li>
+	        </ul>
+			</section>
+			<section>
+			<h2>Bisher gel&ouml;st:</h2>
+	        <ol>
+	            <li>Request an den Server</li>
+	            <li>Server holt Daten aus der Datenbank</li>
+	            <li>Serverseitig wird html mit den Daten erstellt bzw zusammengef&uuml;gt</li>
+				<li>komplette HTML-Seite geht zur&uuml;ck an den Client</li>
+				<li>User dr&uuml;ckt nochmal auf F5</li>
+				<li>Beginne bei Punkt 1</li>
+	        </ol>
+			</section>
+			<section>
+			<img src="assets/hamster.jpg">
+			</section>
+			<section>
+			<h2>Besser:</h2>
+	        <ul>
+	            <li>Server bietet Datenschnittstelle an.</li>
+	        </ul>
+			<pre class="bash"><code>
+	GET servername:port/api/blog/11 //Den Blogpost mit der ID 11 laden
+	GET servername:port/api/blogs   //Alle Blogposts laden
+	PUT servername:port/api/user/11 //updated User mit der ID 11
+	DELETE servername:port/api/user/11 //loesche User mit der ID 11
+			</code></pre>
+			</section>
+			<section>
+			<h2>GET servername:port/blog/11</h2>
+			<pre class="bash"><code>
+{
+  name: "codekitteys awesome blog",
+  date: "25.05.1987",
+  content: "This is my first awesome blog entry..so much awesomness"
+}
+			</code></pre>
+			</section>
+			<section>
+			<h2>Besser:</h2>
+			<ul>
+				<li>Server bietet Datenschnittstelle an.</li>
+				<li>Client erh&auml;lt nur einmal HTML und cached dieses.</li>
+				<li>Es werden nur noch Daten nachgeladen.</li>
+			</ul>
+			</section>
+			<section>
+			<h2>Wichtig:</h2>
+			<ul>
+				<li>GET: laden von Ressourcen</li>
+				<li>PUT: updaten von Ressourcen</li>
+				<li>POST: neu anlegen einer Ressource</li>
+				<li>DELETE: l&ouml;schen einer Ressource</li>
+			</ul>
+			</section>
+			<section>
+			<img src="assets/happyhamster.jpg">
+			</section>
+		</section>
+		<section>
+			<section>
+	            <h1>XMLHttpRequest</h1>
+	        </section>
+			<section>
+			<h2>XHR</h2>
+			<ul>
+				<li>XHR steht f&uuml;r XMLHttpRequest</li>
+				<li>Neue API ist `HTTP fetch` (aber ist dank MS noch nciht standardisiert)</li>
+				<li>Aktuell: XHR2</li>
+			</ul>
+			</section>
+			<section>
+			<h2>XHR</h2>
+			<ul>
+				<li>Bisher: Request an den Server mithilfe des form-Tags</li>
+				<li>individuelle Erstellung des Request mit XHR2</li>
+				<li>Festlegung von HTTP-Methode, Adresse, ResponseType</li>
+			</ul>
+			</section>
+			<section>
+			<h2>Beispiel: (Empfangen von Daten)</h2>
+			<pre class="javascript"><code>
+	var xhr = new XMLHttpRequest();
+
+	xhr.open('GET', 'http://server/api/');
+
+	xhr.responseType = 'json';
+
+	xhr.onload = function() {
+
+		var data = xhr.response;
+		if (data !== null) {
+			console.log(data); // Parsed JSON object
+			}
+
+		};
+
+	xhr.send(null);</code></pre>
+		</section>
+		<section>
+			<h2>Beispiel: (Senden von Daten)</h2>
+			<pre class="javascript"><code>
+	var formData = new FormData();
+	formData.append('username', 'johndoe');
+	formData.append('id', 123456);
+
+	var xhr = new XMLHttpRequest();
+	xhr.open('POST', '/server', true);
+	xhr.onload = function(e) { ... };
+
+	xhr.send(formData);</code></pre>
+			</section>
+		</section>
+    </div>
+</div>
+
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.js"></script>
+
+<script>
+    // Full list of configuration options available at:
+    // https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+        // Optional reveal.js plugins
+        dependencies: [
+            { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+            { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+            { src: 'plugin/zoom-js/zoom.js', async: true },
+            { src: 'plugin/notes/notes.js', async: true }
+        ]
+    });
+</script>
+
+</body>
+</html>

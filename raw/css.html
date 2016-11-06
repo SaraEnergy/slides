@@ -412,8 +412,8 @@
                     <li>Relativ zum umgebenden Element</li>
                     <li><code>z-index</code>  hat keine Wirkung bei <code>static</code></li>
                     <li><code>z-index</code>  hat Einfluss bei <code>relative</code></li>
+                    Do it yourself!
                 </ul>
-                Do it yourself!
             </section>
             <section>
                 <h2>CSS3: Flexbox</h2>
@@ -426,6 +426,99 @@
                     <img src="assets/flex-items.svg">
                     <img src="assets/flex-container.svg">
                 </ol>
+            </section>
+            <section>
+              <h2>Flexbox Container</h2>
+              <pre class="html"><code>
+              &lt;style&gt;
+                .container {
+                  display: flex;
+                }
+              &lt;/style&gt;
+
+
+              &lt;div class=&quot;container&quot;&gt;
+                //flex-items here
+              &lt;/div&gt;
+            </code></pre>
+            </section>
+            <section>
+              <h2>Flexbox Item</h2>
+              <pre class="html"><code>
+              &lt;style&gt;
+                .item {
+                  background-color: cornflowerblue;
+                  order: 2;
+                  width: 100px;
+                  height: 100px;
+                  margin: 10px;
+                }
+              &lt;/style&gt;
+
+
+            &lt;div class=&quot;container&quot;&gt;
+              &lt;div class=&quot;item&quot;&gt;&lt;/div&gt;
+              &lt;div class=&quot;item&quot;&gt;&lt;/div&gt;
+              &lt;div class=&quot;item&quot;&gt;&lt;/div&gt;
+            &lt;/div&gt;
+            </code></pre>
+            </section>
+            <section>
+              <h2>Flex-Direction</h2>
+              <img src="assets/flex-direction1.svg">
+  <pre class="html"><code>
+  &lt;style&gt;
+    .container {
+    flex-direction: row | row-reverse | column | column-reverse;
+    }
+  &lt;/style&gt;
+
+</code></pre>
+            </section>
+            <section>
+              <h2>Flex-Wrap</h2>
+              <img src="assets/flex-wrap.svg">
+  <pre class="html"><code>
+  &lt;style&gt;
+    .container {
+    flex-wrap: nowrap | wrap | wrap-reverse;
+    }
+  &lt;/style&gt;
+
+</code></pre>
+            </section>
+            <section>
+              <h2>Justify-Content</h2>
+              <pre class="html"><code>
+&lt;style&gt;
+.container {
+  justify-content: flex-start | flex-end | center | space-between | space-around;
+  }
+&lt;/style&gt;
+            </code></pre>
+              <img src="assets/justify-content.svg">
+
+            </section>
+            <section>
+              <h2>Align-Content</h2>
+              <pre class="html"><code>
+&lt;style&gt;
+.container {
+  align-content: flex-start | flex-end | center | space-between | space-around | stretch;
+}
+&lt;/style&gt;
+            </code></pre>
+              <img src="assets/align-items.svg">
+
+            </section>
+            <section>
+              <h2>Further Readings</h2>
+              <ul>
+                  <li>http://www.w3schools.com/css/css3_flexbox.asp</li>
+                  <li>https://wiki.selfhtml.org/wiki/CSS/Box-Modell</li>
+                  <li>http://www.sketchingwithcss.com/samplechapter/cheatsheet.html</li>
+              </ul>
+
             </section>
     </section>
          <section>
@@ -471,6 +564,63 @@ hervorgehoben werden.&lt;/p&gt;</code></pre>
                     <li>Manche Attribute werden nicht vererbt (z. B. text-decoration)</li>
                 </ul>
         </section>
+          </section>
+        <section>
+          <section>
+              <h1>Bootstrap 3.3.7</h1>
+          </section>
+          <section>
+              <h2>Bootstrap</h2>
+              <ul>
+                  <li>Entwickelt von Twitter (aktuelle version 3.3.7)</li>
+                  <li>Ein Open-Source Frontend Framework</li>
+                  <li>Enthält HTML und CSS basierende Gestaltungsvorlagen für:</li>
+                  <li>Typografie, Formulare, Buttons, Tabellen, Grid-Systeme</li>
+                  <li>diverse JavaScript Erweiterungen</li>
+                  <li>bestehend aus mehreren CSS-Files/ JavaScript-Files (optional)</li>
+              </ul>
+          </section>
+          <section>
+              <h2>Verwendung</h2>
+              <ul>
+                  <li>Einbinden über lokal heruntergeladene Dateien</li>
+                  <li>Einbinden über CDN:</li>
+                  <li>https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css</li>
+              </ul>
+              <pre class="html"><code>
+&lt;link rel=&quot;stylesheet&quot;
+href=&quot;https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css &quot;&gt;
+&lt;/link&gt;
+            </code></pre>
+          </section>
+          <section>
+              <h2>Und nun???</h2>
+          </section>
+          <section>
+            <h2>ToDo: Learning by doing:</h2>
+            <ul>
+                <li>Siehe dir http://getbootstrap.com/examples/starter-template/#contact an</li>
+                <li>Erstellt in euren Teams eine Webseite mithilfe von Bootstrap nach diesem Template</li>
+            </ul>
+          </section>
+          <section>
+            <h2>ToDo: (Advanced Verion) Learning by doing:</h2>
+            <ul>
+                <li>Siehe dir http://getbootstrap.com/examples/blog/ an</li>
+                <li>Erstellt in euren Teams eine Blog mithilfe von Bootstrap nach diesem Template</li>
+            </ul>
+          </section>
+          <section>
+            <h2>Further Readings</h2>
+            <ul>
+                <li>http://getbootstrap.com/</li>
+                <li>http://holdirbootstrap.de/</li>
+                <li>https://startbootstrap.com/</li>
+                <li>http://www.w3schools.com/bootstrap/</li>
+            </ul>
+
+          </section>
+          </section>
     </section>
     </div>
 
